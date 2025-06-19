@@ -4,10 +4,14 @@ import "./App.css";
 import DashboardLayout from "./layout/DashboardLayout";
 import CreateAd from "./pages/Vendor/CreateAd";
 import VendorAds from "./pages/Vendor/VendorAds";
-import Home from "./pages/Home";
-import User from "./pages/User";
-import Login from "./pages/Login";
-import Details from "./pages/Details";
+import Home from "./pages/User/Home";
+import Login from "./pages/auth/Login";
+import Details from "./pages/User/Details";
+
+// import Home from "./pages/Home";
+// import User from "./pages/User";
+// import Login from "./pages/Login";
+// import Details from "./pages/Details";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,10 +19,10 @@ function App() {
         path: "/",
         element: <Home/>,
         },
-    {
-        path: "user-side",
-        element: <User/>,
-        },
+    // {
+    //     path: "user-page",
+    //     element: <User/>,
+    //     },
   
    
         {

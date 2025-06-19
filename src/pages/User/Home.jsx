@@ -1,8 +1,6 @@
-import React from 'react'
 
 
-
-const NavBar = () => {
+const Home = () => {
   return (
     <nav className="flex justify-between align-center py-5  bg-amber-300 ">
       <span><strong>JE WEB</strong></span>
@@ -13,7 +11,7 @@ const NavBar = () => {
       </ul>
       <button>LOGIN</button>
     </nav>
-  )
+  );
 }
 
-export default NavBar
+export default Home
