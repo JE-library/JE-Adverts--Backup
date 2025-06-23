@@ -19,27 +19,27 @@ function Details() {
         </div>
         <div className="p-4 md:p-8 flex flex-col justify-evenly">
           <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(114,161,4)]">
-            {/* Book Title:{" "} */}
+            {/* Ad Title:{" "} */}
             <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
               {/* {ad.title} */}
             </span>
           </p>
           <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(114,161,4)]">
-            {/* Author:{" "} */}
-            <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-              {/* {book.} */}
-            </span>
-          </p>
-          <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(114,161,4)]">
             {/* Category:{" "} */}
             <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-              {/* {book.category} */}
+              {/* {ad.category} */}
             </span>
           </p>
           <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(114,161,4)]">
             {/* Description:{" "} */}
             <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
               {/* {ad.description} */}
+            </span>
+          </p>
+          <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(114,161,4)]">
+            {/* Price:{" "} */}
+            <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
+              {/* {ad.price} */}
             </span>
           </p>
           

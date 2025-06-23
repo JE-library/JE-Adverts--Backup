@@ -34,7 +34,7 @@ const Home = () => {
                 <div className="shadow-[inset_0_0_15px_rgba(0,0,0,0.1)] rounded-[10px] min-h-[240px] max-h-[240px] transition-all duration-150 ease-in hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.267)]">
                   <img
                     src={ad.image}
-                    alt="book-image"
+                    alt="ad-image"
                     className="w-full h-full object-contain"
                   />
                 </div>
