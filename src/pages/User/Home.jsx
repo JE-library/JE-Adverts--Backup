@@ -1,34 +1,82 @@
-import Footer from "../../components/Footer";
-import NavBar from "../../components/Navbar";
-
 
 const Home = () => {
   return (
     <div>
-      {/* <NavBar/> */}
-       <section class="relative h-screen w-full">
-  <img
-    src="https://cdn.pixabay.com/photo/2022/06/17/03/26/purple-wallpaper-7267076_1280.jpg"
-    alt="Hero"
-    class="w-full h-full object-cover"
-  />
-  {/* <div class="absolute flex flex-col justify-center items-center text-white">
-    <h1 class="text-4xl font-bold mb-4">Welcome to Our Website</h1>
-    <p class="text-lg mb-6">Discover amazing products and stories.</p>
-    <button class="bg-blue-600 px-6 py-2 rounded hover:bg-blue-800 transition">
-      Learn More
-    </button>
-  </div> */}
-</section>
+      <nav className="flex justify-between align-center py-5  bg-amber-300 ">
+        <span>
+          <strong>JE WEB</strong>
+        </span>
+        <ul className="flex space-x-5">
+          <li>Home</li>
+          <li>Categories</li>
+          <li>store</li>
+        </ul>
+        <button>LOGIN</button>
+      </nav>
 
+      <h1 className="">Categories</h1>
+      <ul className="flex flex-row justify-between align-center bg-blue-200">
+        <li>Haircare</li>
+        <li>Skincare</li>
+        <li>Makeup Products</li>
+        <li>Accessories</li>
+        <li>Perfumes</li>
+      </ul>
 
-
-      <Footer/>
+      <div className="w-full flex justify-center">
+          <input
+            type="text"
+            placeholder="Search by category..."
+            className="w-1/2 min-w-[250px] px-4 py-2 border border-[rgb(45,45,114)] rounded-[10px] placeholder:font-semibold"
+          />
+        </div>
       
-    </div>
+      <div>
+                <div className="shadow-[inset_0_0_15px_rgba(0,0,0,0.1)] rounded-[10px] min-h-[240px] max-h-[240px] transition-all duration-150 ease-in hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.267)]">
+                  <img
+                    src={ad.image}
+                    alt="ad-image"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
 
+                <div className="h-full p-2 flex flex-col justify-between">
+                  <h2 className=" text-[1.2rem] font-semibold text-[rgb(0,0,41)] line-clamp-2">
+                    {ad.title}
+                  </h2>
+
+                  
+                  <p className="genre text-sm font-medium text-[rgb(59,59,65)] line-clamp-1">
+                    Category: {ad.category}
+                  </p>
+
+                  <p className="text-sm font-medium text-[rgb(59,59,65)]">
+                  {ad.price}
+                  </p>
+
+                  <div className="pt-2 flex justify-between">
+                    <button
+                      className="min-w-[70px] bg-[rgb(0,151,189)] px-2 py-[0.1rem] rounded text-[0.9rem] font-medium text-white hover:opacity-80 cursor-pointer"
+                      onClick={() => navigate(`/detail/${ad.id}`)}
+                    >
+                      View 
+                    </button>
+                    </div>
+                </div>
     
   );
-}
+};
 
-export default Home
+export default Home;
+
+
+
+
+
+
+
+
+
+
+
+                
