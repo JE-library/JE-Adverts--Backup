@@ -13,7 +13,9 @@ const Sidebar = () => {
             <span>{icon}</span>
             <span>{text}</span>
           </NavLink>
+
         ))}
+        
       </div>
     </div>
   );
