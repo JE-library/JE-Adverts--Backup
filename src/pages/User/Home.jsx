@@ -1,3 +1,4 @@
+
 const Home = () => {
   return (
     <div>
@@ -63,7 +64,6 @@ const Home = () => {
                     </div>
                 </div>
     
-    </div>
   );
 };
 
@@ -78,29 +78,5 @@ export default Home;
 
 
 
-{/* <div className="shadow-[inset_0_0_15px_rgba(0,0,0,0.1)] rounded-[10px] min-h-[240px] max-h-[240px] transition-all duration-150 ease-in hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.267)]">
-                  <img
-                    src={book.image}
-                    alt="book-image"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
 
-                <div className="h-full p-2 flex flex-col justify-between">
-                  <h2 className=" text-[1.2rem] font-semibold text-[rgb(0,0,41)] line-clamp-2">
-                    {book.title}
-                  </h2>
-
-                  <p className="author text-base font-medium text-[rgb(114,161,4)] line-clamp-1">
-                    by {book.author}
-                  </p>
-
-                  <p className="genre text-sm font-medium text-[rgb(59,59,65)] line-clamp-1">
-                    Genre: {book.genre}
-                  </p>
-
-                  <p className="text-sm font-medium text-[rgb(59,59,65)]">
-                    Published: {book.year}
-                  </p>
-                  
-                </div> */}
+                

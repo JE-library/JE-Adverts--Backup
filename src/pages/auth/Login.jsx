@@ -2,6 +2,7 @@ import react from "react";
 
 const Login = () => {
   return (
+
     <div className="grid grid-cols-[1fr 1fr]">
       <div>{/* <img src={picture1Img} alt="" /> */}</div>
       <form className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm">
@@ -64,4 +65,9 @@ const Login = () => {
   );
 };
 
+  
+ 
+
 export default Login;
+
+

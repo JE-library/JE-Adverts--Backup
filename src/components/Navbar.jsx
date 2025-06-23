@@ -1,19 +1,52 @@
-import React from 'react'
-
-
+import { Link } from "react-router";
+import SignUp from "../pages/auth/Signup";
 
 const NavBar = () => {
   return (
-    <nav className="flex justify-between align-center py-5  bg-amber-300 ">
-      <span><strong>JE WEB</strong></span>
+    <nav className="flex justify-between align-center py-5 bg-white text-black">
+      <span>
+        <strong>JE ADVERTS</strong>
+      </span>
       <ul className="flex space-x-5">
-        <li>Catergories</li>
-        <li>Brand</li>
-        <li>store</li>
+        <li>
+          {" "}
+          <Link to="./">Home</Link>
+        </li>
+        <li>Ads</li>
       </ul>
-      <button>LOGIN</button>
-    </nav>
-  )
-}
 
-export default NavBar
+      {/* <button>
+        <Link to="sign-up" className="bg-amber-900 py-4 px-10 rounded-2xl">
+          {" "}
+          SignUp
+        </Link>
+      </button> */}
+      <button>
+        <Link to="sign-up" className="bg-red-600 py-4 px-10 rounded-2xl">
+          {" "}
+          Get Started
+          <select
+          className="  py border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          name=""
+          id=""
+        >
+          <option value=""></option>
+          <option value=""><b>USER</b></option>
+          <option value="">VENDOR</option>
+        </select>
+        </Link>
+        {/* <select
+          className="  py border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          name=""
+          id=""
+        >
+          <option value=""></option>
+          <option value=""><b>USER</b></option>
+          <option value="">VENDOR</option>
+        </select> */}
+      </button>
+    </nav>
+  );
+};
+
+export default NavBar;
