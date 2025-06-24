@@ -1,12 +1,13 @@
 const Home = () => {
-  const ad = {
-    title: "Wellness",
-    image: "https://cdn.pixabay.com/photo/2015/12/06/18/28/capsules-1079838_960_720.jpg",
-    category: "beauty",
-    id:"4",
-    price: 4
+  
+  // const ad = {
+  //   title: "Wellness",
+  //   image: "https://cdn.pixabay.com/photo/2015/12/06/18/28/capsules-1079838_960_720.jpg",
+  //   category: "beauty",
+  //   id:"4",
+  //   price: 4
 
-  }
+  // }
   return (
     <div>
       <nav className="flex justify-between align-center py-5  bg-amber-300 ">
