@@ -1,6 +1,7 @@
+import { useState } from "react";
 import CategoryCard from "./CategoryCard";
 
-const categories = [
+const initialCategories = [
   {
     title: "Skincare",
     image: "https://cdn.pixabay.com/photo/2018/01/15/14/05/cosmetics-3084006_960_720.jpg",
@@ -32,34 +33,28 @@ const categories = [
 ];
 
 const VendorAds = () => {
+  const [categories, setCategories] = useState(initialCategories);
+
+  const handleDelete = (titleToDelete) => {
+    const confirmed = window.confirm(`Delete "${titleToDelete}" category?`);
+    if (confirmed) {
+      setCategories(categories.filter(cat => cat.title !== titleToDelete));
+    }
+  };
+
   return (
     <section className="p-10 bg-pink-50 min-h-screen">
       <h2 className="text-3xl font-bold text-center mb-10 text-pink-700">Vendor Categories</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {categories.map((cat, index) => (
-          <CategoryCard key={index} title={cat.title} image={cat.image} />
-  ))};
+          <CategoryCard
+            key={index}
+            title={cat.title}
+            image={cat.image}
+            onDelete={() => handleDelete(cat.title)}
+          />
+        ))}
       </div>
-    <div className="pt-2 flex justify-between">
-      <button className="min-w-[70px] border border-[crimson] bg-[rgb(255,235,229)] px-2 py-[0.1rem] rounded-[0.3rem] text-[0.9rem] font-medium text-[crimson] hover:bg-[crimson] hover:text-[rgb(255,235,229)] hover:opacity-80 cursor-pointer">
-                           
-                      
-                      View
-                    </button>
-      <button className="min-w-[70px] border border-[crimson] bg-[rgb(255,235,229)] px-2 py-[0.1rem] rounded-[0.3rem] text-[0.9rem] font-medium text-[crimson] hover:bg-[crimson] hover:text-[rgb(255,235,229)] hover:opacity-80 cursor-pointer">
-                            
-                  
-                      
-                      Edit
-                    </button>
-      <button className="min-w-[70px] border border-[crimson] bg-[rgb(255,235,229)] px-2 py-[0.1rem] rounded-[0.3rem] text-[0.9rem] font-medium text-[crimson] hover:bg-[crimson] hover:text-[rgb(255,235,229)] hover:opacity-80 cursor-pointer">
-                            
-                  
-                      
-                      Delete 
-                    </button>
-    </div>
-      
     </section>
   );
 };
