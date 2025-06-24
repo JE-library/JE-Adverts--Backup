@@ -8,6 +8,7 @@ import Home from "./pages/User/Home";
 import Login from "./pages/auth/Login";
 import Details from "./pages/User/Details";
 import SignUp from "./pages/auth/Signup";
+import ViewAd from "./pages/Vendor/Viewad";
 
 // import Home from "./pages/Home";
 // import User from "./pages/User";
@@ -52,13 +53,18 @@ function App() {
           path: "adverts",
           element: <VendorAds />,
         },
+    //      {
+    //   path: "dashboard/adverts/3",         // 👈 ADD THIS
+    //   element: <ViewAd />,          // 👈 Your ViewAd page
+    // },
 
+         
         {
           path: "create-ad",
           element: <CreateAd />,
         },
 
-        
+       
 
 
 

@@ -18,6 +18,11 @@ const K ={
             text: "Create Advert",
             path: "/dashboard/create-ad",
         },
+        //  {
+        //     icon: <FaHome/>,
+        //     text: "viewads",
+        //     path: "/dashboard/view-ad",
+        // },
     ]
 }
 export default K;
