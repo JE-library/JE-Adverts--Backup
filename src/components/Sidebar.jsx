@@ -1,7 +1,13 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import K from "../constants";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/log-in");
+  }
   return (
     <div className="bg-black w-60 h-screen pt-10 pb-20 text-white">
       <span> LOGO</span>
@@ -21,6 +27,7 @@ const Sidebar = () => {
           
 
         
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

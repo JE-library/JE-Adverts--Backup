@@ -1,6 +1,13 @@
 import React from "react";
 
 function Details() {
+  const ad = {
+    title: "Wellness",
+    image: "https://cdn.pixabay.com/photo/2015/12/06/18/28/capsules-1079838_960_720.jpg",
+    category: "beauty",
+    id:"4",
+    price: 4
+  }
   return (
     <div>
       <section

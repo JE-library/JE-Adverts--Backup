@@ -8,6 +8,7 @@ import Home from "./pages/User/Home";
 import Login from "./pages/auth/Login";
 import Details from "./pages/User/Details";
 import SignUp from "./pages/auth/Signup";
+import Landing from "./pages/Landing";
 import ViewAd from "./pages/Vendor/Viewad";
 
 // import Home from "./pages/Home";
@@ -17,28 +18,31 @@ import ViewAd from "./pages/Vendor/Viewad";
 
 function App() {
   const router = createBrowserRouter([
-        {
-        path: "/",
-        element: <Home/>,
-        },
+    {
+      path: "/",
+      element: <Landing />,
+    },
+    {
+      path: "/user-home",
+      element: <Home />,
+    },
     // {
     //     path: "user-page",
     //     element: <User/>,
     //     },
-  
-   
-        {
-        path: "log-in",
-        element: <Login/>,
-        },
-        {
-        path: "detail",
-        element: <Details/>,
-        },
+
     {
-  path:"/sign-up",
-  element: <SignUp/>,
-},
+      path: "log-in",
+      element: <Login />,
+    },
+    {
+      path: "detail",
+      element: <Details />,
+    },
+    {
+      path: "/sign-up",
+      element: <SignUp />,
+    },
 
     {
       path: "/dashboard",
@@ -64,6 +68,8 @@ function App() {
           element: <CreateAd />,
         },
 
+
+
        
 
 
@@ -74,6 +80,7 @@ function App() {
        
 
         
+
       ],
     },
   ]);
