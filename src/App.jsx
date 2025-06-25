@@ -10,6 +10,7 @@ import Details from "./pages/User/Details";
 import SignUp from "./pages/auth/Signup";
 import Landing from "./pages/Landing";
 import ViewAd from "./pages/Vendor/Viewad";
+import EditAd from "./pages/Vendor/EditAd";
 
 // import Home from "./pages/Home";
 // import User from "./pages/User";
@@ -53,34 +54,24 @@ function App() {
           index: true,
           element: <Overview />,
         },
+
+        {
+          path: "edit-ad/:id",
+          element: <EditAd />,
+        },
         {
           path: "adverts",
           element: <VendorAds />,
         },
-    //      {
-    //   path: "dashboard/adverts/3",         // 👈 ADD THIS
-    //   element: <ViewAd />,          // 👈 Your ViewAd page
-    // },
+        {
+          path: "adverts/:id",
+          element: <ViewAd />,
+        },
 
-         
         {
           path: "create-ad",
           element: <CreateAd />,
         },
-
-
-
-       
-
-
-
-
-
-
-       
-
-        
-
       ],
     },
   ]);

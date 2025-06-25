@@ -1,42 +1,86 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { apiDeleteVendorAd, apiFetchVendorAds } from "../../services/adverts";
+import { useNavigate } from "react-router";
+import logo from "../../assets/LOGO.png";
 
-const VendorAds = () => {
-  const [items, setItems] = useState([]); // Holds the ads/categories
-  const [loading, setLoading] = useState(false); // Loading state
+function VendorAds() {
+  const [loading, setLoading] = useState(false);
+  const [vendorAds, setVendorAds] = useState([]);
+  const navigate = useNavigate();
 
-  const fetchItems = async () => {
+  const fetchVendorAds = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("https://je-advertisement-backend.onrender.com/api/vendor/ads");
-      setItems(response.data); // Save API data
+      const res = await apiFetchVendorAds();
+      console.log(res.data.data);
+      setVendorAds(res.data.data);
     } catch (error) {
-      console.error("Error fetching items:", error);
+      console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchItems(); // Call fetch when page loads
+    fetchVendorAds();
   }, []);
 
   return (
-    <section className="p-10 bg-pink-50 min-h-screen">
-      <h2 className="text-3xl font-bold text-center mb-10 text-pink-700">Vendor Ads</h2>
+    <section className="w-full ">
+      <h2 className="text-3xl font-bold text-center mb-10 text-pink-700">
+        Vendor Ads
+      </h2>
 
       {loading ? (
-        <p className="text-center">Loading ads...</p>
+        <div className="min-h-[90vh] flex flex-col items-center">
+          <img src={logo}></img>
+          <p className="text-2xl font-semibold">Loading....</p>
+        </div>
+      ) : !vendorAds ? (
+        <div className="m-4 flex flex-col justify-center items-center text-center">
+          <p className="text-[2rem] font-normal text-[rgb(170,1,35)]">
+            Book Not Found!!
+          </p>
+          <img src={logo}></img>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {items.map((item, index) => (
-            <div key={index} className="bg-white shadow rounded p-4 text-center">
-              <img src={item.image} alt={item.title} className="w-full h-48 object-cover rounded mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <div className="flex justify-center gap-4 pt-2">
-                <button className="border border-pink-500 bg-pink-100 px-4 py-1 rounded text-pink-600 hover:bg-pink-500 hover:text-white">View</button>
-                <button className="border border-blue-500 bg-blue-100 px-4 py-1 rounded text-blue-600 hover:bg-blue-500 hover:text-white">Edit</button>
-                <button className="border border-red-500 bg-red-100 px-4 py-1 rounded text-red-600 hover:bg-red-500 hover:text-white">Delete</button>
+        <div className=" mt-8 px-16 py-4 grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4 rounded-[10px]">
+          {vendorAds.map((vendorAd) => (
+            <div
+              key={vendorAd.id}
+              className="bg-white border border-gray-400 shadow-[0_0_15px_rgba(0,0,0,0.1)] p-4 h-[450px] rounded-[10px] flex flex-col justify-center gap-2 transition-all duration-150 ease-in hover:border-black hover:shadow-[0_0_15px_rgba(0,0,0,0.4)] hover:h-[430px]"
+            >
+              <div className="shadow-[inset_0_0_15px_rgba(0,0,0,0.1)] rounded-[10px] min-h-[240px] max-h-[240px] transition-all duration-150 ease-in hover:shadow-[inset_0_0_15px_rgba(0,0,0,0.267)]">
+                <img
+                  src={vendorAd.imageURL}
+                  alt="book-image"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              <div className="h-full p-2 flex flex-col justify-between">
+                <h2 className=" text-[1.2rem] font-semibold text-[rgb(0,0,41)] line-clamp-2">
+                  {vendorAd.title}
+                </h2>
+
+                <p className="author text-base font-medium text-[rgb(114,161,4)] line-clamp-1">
+                  Price: {vendorAd.price}
+                </p>
+
+                <p className="genre text-sm font-medium text-[rgb(59,59,65)] line-clamp-1">
+                  Category: {vendorAd.category}
+                </p>
+
+                <div className="pt-2 flex justify-between">
+                  <button
+                    className="min-w-[70px] bg-[rgb(0,151,189)] px-2 py-[0.1rem] rounded text-[0.9rem] font-medium text-white hover:opacity-80 cursor-pointer"
+                    onClick={() =>
+                      navigate(`/dashboard/adverts/${vendorAd.adID}`)
+                    }
+                  >
+                    View
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -44,6 +88,6 @@ const VendorAds = () => {
       )}
     </section>
   );
-};
+}
 
 export default VendorAds;

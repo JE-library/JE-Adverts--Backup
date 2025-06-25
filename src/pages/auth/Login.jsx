@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const res = await apiLogin(payload);
       console.log(res);
-      localStorage.setItem("accessToken", res.data.data);
+      localStorage.setItem("accessToken", res.data.data.token);
       toast.success(res.data.message);
 
       if (data.role =="vendor"){
@@ -150,4 +150,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;

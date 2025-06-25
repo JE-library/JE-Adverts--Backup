@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const Overview = () => {
   const [openCategory, setOpenCategory] = useState(null);
@@ -27,7 +27,6 @@ const Overview = () => {
     {
       name: "Beauty Tools",
       items: ["Beauty Blender", "Makeup Brushes", "Facial Roller"],
-      
     },
     {
       name: "Wellness",
@@ -43,8 +42,12 @@ const Overview = () => {
 
   const brands = [
     { logo: "https://logowik.com/content/uploads/images/dior3907.jpg" },
-    { logo: "https://logowik.com/content/uploads/images/t_fenty-beauty9929.logowik.com.webp" },
-    { logo: "https://logowik.com/content/uploads/images/t_palmolive-old8896.logowik.com.webp" },
+    {
+      logo: "https://logowik.com/content/uploads/images/t_fenty-beauty9929.logowik.com.webp",
+    },
+    {
+      logo: "https://logowik.com/content/uploads/images/t_palmolive-old8896.logowik.com.webp",
+    },
     { logo: "https://logowik.com/content/uploads/images/t_pz-cussons5275.jpg" },
     { logo: "https://logowik.com/content/uploads/images/t_239_nivea.jpg" },
   ];
@@ -54,7 +57,7 @@ const Overview = () => {
   };
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 w-full">
       {/* Categories with Dropdown */}
       <section>
         <h2 className="text-xl font-semibold mb-3">Categories</h2>
