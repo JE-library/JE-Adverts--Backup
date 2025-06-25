@@ -1,34 +1,38 @@
 import { apiClient } from "./config";
 
-// getall adverts for user
+// Get all adverts for user
 export const apiFetchUserAds = async () => apiClient.get("/user/ads");
 
-// get single ad for user
+// Get single ad for user
 export const apiGetSingleUserAd = async (adID) =>
   apiClient.get(`/user/ads/${adID}`);
 
-// search for ads for user
-export const apiSearchUserAd = async (params) =>
-  apiClient.get(`/user/ads/search`, { params });
+// Search ads for user
+export const apiSearchUserAd = async () => apiClient.get("/user/ads/search");
 
-// get all ads for vendor
-export const apiFetchVendorAds = async () => apiClient.get(`/vendor/ads`);
+// Get all ads for vendor
+export const apiFetchVendorAds = async () => apiClient.get("/vendor/ads");
 
-// search for ads for vendor
+// Search ads for vendor
 export const apiSearchVendorAds = async () =>
-  apiClient.get(`/vendor/ads/search`);
+  apiClient.get("/vendor/ads/search");
 
-// get single ad for vendor
+// Get single ad for vendor
 export const apiGetSingleVendorAd = async (adID) =>
-  apiClient.get(`/vendor/ads${adID}`, payload);
+  apiClient.get(`/vendor/ads/${adID}`);
 
-// edit single ad for vendor
+// Edit single ad for vendor
 export const apiEditVendorAds = async (adID, payload) =>
-  apiClient.put(`/vendor/ads${adID}`, payload);
+  apiClient.put(`/vendor/ads/${adID}`, payload);
 
-// delete single ad for vendor
+// Delete single ad for vendor
 export const apiDeleteVendorAd = async (adID) =>
-  apiClient.delete(`/ads/${adID}`, payload);
+  apiClient.delete(`/vendor/ads/${adID}`);
 
-// post ads for vendor
-export const apiPostVendorAds = async () => apiClient.post(`/vendor/ads`);
+// Post new ad for vendor
+export const apiPostVendorAds = async (payload) =>
+  apiClient.post("/vendor/ads", payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });

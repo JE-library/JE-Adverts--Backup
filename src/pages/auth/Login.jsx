@@ -30,11 +30,12 @@ const Login = () => {
       localStorage.setItem("accessToken", res.data.data.token);
       toast.success(res.data.message);
 
-      if (data.role == "vendor") {
+      if (data.role =="vendor"){
         navigate("/dashboard");
-      } else {
+      } else{
         navigate("/user-home");
       }
+
     } catch (error) {
       console.log(error);
       toast.error(error?.message || "An Error Occured.");
@@ -69,15 +70,11 @@ const Login = () => {
             id="usernameOrEmail"
             className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
             placeholder="Enter Username or Email"
-            {...register("usernameOrEmail", {
-              required: "Username or email is required",
-            })}
+            {...register("usernameOrEmail", { required: "Username or email is required" })}
           />
           {errors?.usernameOrEmail && (
-            <span className="text-red-400">
-              {errors?.usernameOrEmail?.message}
-            </span>
-          )}
+          <span className="text-red-400">{errors?.usernameOrEmail?.message}</span>
+        )}
         </div>
 
         <div>
@@ -123,28 +120,28 @@ const Login = () => {
             className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
             placeholder="Enter your password"
             {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters",
-              },
-            })}
+            required: "Password is required",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+          })}
           />
           {errors?.password && (
-            <span className="text-red-400">{errors?.password?.message}</span>
-          )}
+          <span className="text-red-400">{errors?.password?.message}</span>
+        )}
         </div>
         <button
-          type="submit"
-          disabled={isError}
-          className={`${
-            isError
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-blue-400 hover:bg-emerald-500"
-          } w-[150px] text-white mt-[30px] mr-[200px] p-[10px] justify-center rounded-[15px] transition duration-200`}
-        >
-          {isSubmitting ? "Submitting..." : "Log In"}
-        </button>
+        type="submit"
+        disabled={isError}
+        className={`${
+          isError
+            ? "bg-gray-300 cursor-not-allowed"
+            : "bg-blue-400 hover:bg-emerald-500"
+        } w-[150px] text-white mt-[30px] mr-[200px] p-[10px] justify-center rounded-[15px] transition duration-200`}
+      >
+        {isSubmitting ? "Submitting..." : "Log In"}
+      </button>
         {/* <button className="w-[150px] bg-gray-600 text-white mt-[30px] mr-[200px] p-[10px] justify-center rounded-[15px] hover:bg-emerald-500 transition duration-200">
           Submit
         </button> */}

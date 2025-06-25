@@ -6,7 +6,7 @@ const CategoryCard = ({ title, image, onDelete }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div className=  "shadow-lg rounded-lg overflow-hidden">
       <img src={image} alt={title} className="h-48 w-full object-cover" />
       <div className="p-4">
         <h3 className="text-xl font-semibold text-gray-800 mb-4">{title}</h3>
