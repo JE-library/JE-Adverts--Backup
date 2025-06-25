@@ -5,10 +5,16 @@ import picture1Img from "../assets/picture1.jpg";
 import picture2Img from "../assets/picture2.jpg";
 import picture3Img from "../assets/picture3.jpg";
 import picture4Img from "../assets/picture4.jpg";
-// import picture5Img from "../assets/picture5.jpg";
 import picture6Img from "../assets/picture6.jpg";
 import picture7Img from "../assets/picture7.jpg";
-
+// brands
+import elf from "../assets/brands/e.l.f.png";
+import Nivea from "../assets/brands/Nivea.png";
+import MacCosmetics from "../assets/brands/Mac Cosmetics.png";
+import GoodMolecules from "../assets/brands/Good Molecules.png";
+import Ordinary from "../assets/brands/The Ordinary.png";
+import Neutrogena from "../assets/brands/Neutrogena.png";
+// brands
 const Landing = () => {
   return (
     <UserLayout>
@@ -148,7 +154,7 @@ const Landing = () => {
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 justify-items-center">
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
                 <img
-                  src="/images/henkel.png"
+                  src={Neutrogena}
                   alt="Neutrogena"
                   class="max-w-[70%] max-h-[70%]"
                 />
@@ -156,7 +162,7 @@ const Landing = () => {
 
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
                 <img
-                  src="/images/nestle.png"
+                  src={Ordinary}
                   alt="Ordinary"
                   class="max-w-[70%] max-h-[70%]"
                 />
@@ -164,7 +170,7 @@ const Landing = () => {
 
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
                 <img
-                  src="/images/mars.png"
+                  src={GoodMolecules}
                   alt="Good Molecules"
                   class="max-w-[70%] max-h-[70%]"
                 />
@@ -172,26 +178,18 @@ const Landing = () => {
 
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
                 <img
-                  src="/images/pg.png"
-                  alt="Mac"
+                  src={MacCosmetics}
+                  alt="Mac Cosmetics"
                   class="max-w-[70%] max-h-[70%]"
                 />
               </div>
 
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img
-                  src="/images/cadbury.png"
-                  alt="Nivea"
-                  class="max-w-[70%] max-h-[70%]"
-                />
+                <img src={Nivea} alt="Nivea" class="max-w-[70%] max-h-[70%]" />
               </div>
 
               <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img
-                  src="/images/loreal.png"
-                  alt="e.l.f"
-                  class="max-w-[70%] max-h-[70%]"
-                />
+                <img src={elf} alt="e.l.f" class="max-w-[70%] max-h-[70%]" />
               </div>
             </div>
           </div>
