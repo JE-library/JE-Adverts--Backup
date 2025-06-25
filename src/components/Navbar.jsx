@@ -16,9 +16,9 @@ const NavBar = () => {
       </ul>
 
       <button>
-        <Link to="sign-up" className="bg-gray-700 py-4 px-10 rounded-2xl">
+        <Link to="log-in" className="bg-gray-700 py-4 px-10 rounded-2xl">
           {" "}
-          SignUp
+          Sign-in
         </Link>
       </button>
       {/* <button>
