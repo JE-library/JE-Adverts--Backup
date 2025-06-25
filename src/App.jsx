@@ -33,11 +33,11 @@ function App() {
     //     },
 
     {
-      path: "log-in",
+      path: "/log-in",
       element: <Login />,
     },
     {
-      path: "detail",
+      path: "/details/:id",
       element: <Details />,
     },
     {
