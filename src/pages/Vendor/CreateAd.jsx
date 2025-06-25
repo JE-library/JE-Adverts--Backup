@@ -27,7 +27,7 @@ const CreateAd = () => {
       const res = await apiPostVendorAds(payload);
       console.log(res.data);
       toast.success("product added successfully");
-      navigate("/dashboard/advert");
+      navigate("/dashboard/adverts");
     } catch (error) {
       console.log(error);
     } finally {
