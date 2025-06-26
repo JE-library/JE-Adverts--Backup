@@ -1,9 +1,8 @@
-import react from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
+import { useState } from "react";
 import { apiLogin } from "../../services/auth";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,136 +14,137 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const payload = {
       usernameOrEmail: data.usernameOrEmail,
       role: data.role,
       password: data.password,
     };
-    // console.log(payload)
+
     setIsSubmitting(true);
 
     try {
       const res = await apiLogin(payload);
-      console.log(res);
       localStorage.setItem("accessToken", res.data.data.token);
       toast.success(res.data.message);
 
-      if (data.role =="vendor"){
+      if (data.role === "vendor") {
         navigate("/dashboard");
-      } else{
+      } else {
         navigate("/user-home");
       }
-
     } catch (error) {
-      console.log(error);
-      toast.error(error?.message || "An Error Occured.");
+      toast.error(error?.message || "An error occurred.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const isError = Object.keys(errors).length > 0;
+
   return (
-    <div className="grid grid-cols-[1fr 1fr]">
-      <div>{/* <img src={picture1Img} alt="" /> */}</div>
+    <div className="min-h-screen bg-pink-50 flex items-center justify-center px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm"
+        className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md"
       >
-        <div>
-          <h4 className="text-xl font-semibold mb-6 text-center text-gray-800">
-            Let's get you logged in!
-          </h4>
-        </div>
-        <div>
+        <h2 className="text-3xl font-bold text-center text-pink-600 mb-6 font-serif">
+          Welcome Back
+        </h2>
+
+        {/* Username or Email */}
+        <div className="mb-4">
           <label
-            htmlFor=""
-            className="block text-[20px] font-medium text-gray-700 mb-1"
+            htmlFor="usernameOrEmail"
+            className="block text-sm font-medium text-gray-700"
           >
             Username or Email
           </label>
-          <br />
           <input
-            type="text"
             id="usernameOrEmail"
-            className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
-            placeholder="Enter Username or Email"
-            {...register("usernameOrEmail", { required: "Username or email is required" })}
+            type="text"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="Enter username or email"
+            {...register("usernameOrEmail", {
+              required: "Username or email is required",
+            })}
           />
-          {errors?.usernameOrEmail && (
-          <span className="text-red-400">{errors?.usernameOrEmail?.message}</span>
-        )}
+          {errors.usernameOrEmail && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.usernameOrEmail.message}
+            </p>
+          )}
         </div>
 
-        <div>
-          <h4 className="block text-[20px] font-medium text-gray-700 mb-1">
-            Login as:{" "}
-          </h4>
+        {/* Role */}
+        <div className="mb-4">
+          <label
+            htmlFor="role"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Login as
+          </label>
           <select
-            className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
             id="role"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
             {...register("role", { required: "Role is required" })}
           >
-            <option value="">Select one</option>
+            <option value="">Select role</option>
             <option value="user">User</option>
             <option value="vendor">Vendor</option>
           </select>
+          {errors.role && (
+            <p className="text-sm text-red-500 mt-1">{errors.role.message}</p>
+          )}
         </div>
-        {/* <div>
+
+        {/* Password */}
+        <div className="mb-6">
           <label
-            htmlFor=""
-            className="block text-[20px] font-medium text-gray-700 mb-1"
-          >
-            e-mail
-          </label>
-          <br />
-          <input
-            type="text"
-            className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
-            placeholder="eg: explorer@gmail.com"
-            required
-          />
-        </div> */}
-        <div>
-          <label
-            htmlFor=""
-            className="block text-[20px] font-medium text-gray-700 mb-1"
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
           >
             Password
           </label>
-          <br />
           <input
-            type="password"
             id="password"
-            className="w-[300px] border border-gray-300 p-[10px] rounded-[15px] focus:outline-none focus:ring focus:ring-gray-500"
+            type="password"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
             placeholder="Enter your password"
             {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters",
-            },
-          })}
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+            })}
           />
-          {errors?.password && (
-          <span className="text-red-400">{errors?.password?.message}</span>
-        )}
+          {errors.password && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.password.message}
+            </p>
+          )}
         </div>
+
+        {/* Submit */}
         <button
-        type="submit"
-        disabled={isError}
-        className={`${
-          isError
-            ? "bg-gray-300 cursor-not-allowed"
-            : "bg-blue-400 hover:bg-emerald-500"
-        } w-[150px] text-white mt-[30px] mr-[200px] p-[10px] justify-center rounded-[15px] transition duration-200`}
-      >
-        {isSubmitting ? "Submitting..." : "Log In"}
-      </button>
-        {/* <button className="w-[150px] bg-gray-600 text-white mt-[30px] mr-[200px] p-[10px] justify-center rounded-[15px] hover:bg-emerald-500 transition duration-200">
-          Submit
-        </button> */}
+          type="submit"
+          disabled={isSubmitting || isError}
+          className={`w-full py-2 rounded-lg text-white font-semibold transition ${
+            isSubmitting || isError
+              ? "bg-pink-200 cursor-not-allowed"
+              : "bg-pink-500 hover:bg-pink-600"
+          }`}
+        >
+          {isSubmitting ? "Logging in..." : "Log In"}
+        </button>
+
+        {/* Sign Up Redirect */}
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <Link to="/sign-up" className="text-pink-600 hover:underline">
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

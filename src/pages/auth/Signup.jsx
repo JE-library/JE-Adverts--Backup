@@ -1,11 +1,8 @@
-// import Footer from "../../components/Footer";
-// import NavBar from "../../components/Navbar";
-
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
+import { useState } from "react";
 import { apiSignup } from "../../services/auth";
 import { toast } from "react-toastify";
-import { useState } from "react";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,121 +14,152 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const payload = {
       username: data.username,
       role: data.role,
       email: data.email,
       password: data.password,
     };
-    // console.log(payload)
+
     setIsSubmitting(true);
 
     try {
-      const res = await apiSignup(payload);
-      console.log(res);
+      await apiSignup(payload);
       toast.success("User Registered Successfully!");
       navigate("/log-in");
     } catch (error) {
-      console.log(error);
-      toast.error(error?.message || "An Error Occured.");
+      toast.error(error?.message || "An error occurred.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const isError = Object.keys(errors).length > 0;
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="bg-amber-200 p-8 rounded-lg shadow-lg w-full max-w-sm"
-    >
-      <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Username</label>
-        <input
-          type="text"
-          id="username"
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your username"
-          {...register("username", { required: "Username is required" })}
-        />
-        {errors?.username && (
-          <span className="text-red-400">{errors?.username?.message}</span>
-        )}
-      </div>
-
-      <div>
-        <h4 className="block text-gray-700 mb-2">Sign Up As</h4>
-        <select
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          id="role"
-          {...register("role", { required: "Role is required" })}
-        >
-          <option value="">Select one</option>
-          <option value="user">User</option>
-          <option value="vendor">Vendor</option>
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Email</label>
-        <input
-          type="email"
-          id="email"
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your email"
-          {...register("email", { required: "Email is required" })}
-        />
-        {errors?.email && (
-          <span className="text-red-400">{errors?.email?.message}</span>
-        )}
-      </div>
-
-      <div className="mb-6">
-        <label className="block text-gray-700 mb-2">Password</label>
-        <input
-          type="password"
-          id="password"
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your password"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters",
-            },
-          })}
-        />
-        {errors?.password && (
-          <span className="text-red-400">{errors?.password?.message}</span>
-        )}
-      </div>
-
-      {/* <div className="mb-6">
-        <label className="block text-gray-700 mb-2">Confirm Password</label>
-        <input
-          type="password"
-          id="password"
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter your password"
-          {...register("password", {required: "Password is required"})}
-          required
-        />
-      </div> */}
-
-      <button
-        type="submit"
-        disabled={isError}
-        className={`${
-          isError
-            ? "bg-gray-300 cursor-not-allowed"
-            : "bg-blue-400 hover:bg-blue-700"
-        } w-full text-white py-2 rounded transition`}
+    <div className="min-h-screen bg-pink-50 flex items-center justify-center px-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white border border-pink-200 p-8 rounded-2xl shadow-lg w-full max-w-md"
       >
-        {isSubmitting ? "Submitting..." : "Sign Up"}
-      </button>
-    </form>
+        <h2 className="text-3xl font-bold text-center text-pink-600 mb-6 font-serif">
+          Create Account
+        </h2>
+
+        {/* Username */}
+        <div className="mb-4">
+          <label
+            htmlFor="username"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Username
+          </label>
+          <input
+            id="username"
+            type="text"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="Your username"
+            {...register("username", { required: "Username is required" })}
+          />
+          {errors.username && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.username.message}
+            </p>
+          )}
+        </div>
+
+        {/* Role */}
+        <div className="mb-4">
+          <label
+            htmlFor="role"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Sign Up As
+          </label>
+          <select
+            id="role"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+            {...register("role", { required: "Role is required" })}
+          >
+            <option value="">Select one</option>
+            <option value="user">User</option>
+            <option value="vendor">Vendor</option>
+          </select>
+          {errors.role && (
+            <p className="text-sm text-red-500 mt-1">{errors.role.message}</p>
+          )}
+        </div>
+
+        {/* Email */}
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="you@example.com"
+            {...register("email", { required: "Email is required" })}
+          />
+          {errors.email && (
+            <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+          )}
+        </div>
+
+        {/* Password */}
+        <div className="mb-6">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="At least 8 characters"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+            })}
+          />
+          {errors.password && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.password.message}
+            </p>
+          )}
+        </div>
+
+        {/* Submit */}
+        <button
+          type="submit"
+          disabled={isSubmitting || isError}
+          className={`w-full py-2 rounded-lg text-white font-semibold transition ${
+            isSubmitting || isError
+              ? "bg-pink-200 cursor-not-allowed"
+              : "bg-pink-500 hover:bg-pink-600"
+          }`}
+        >
+          {isSubmitting ? "Submitting..." : "Sign Up"}
+        </button>
+
+        {/* Already have an account? */}
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Already have an account?{" "}
+          <Link to="/log-in" className="text-pink-600 hover:underline">
+            Log in
+          </Link>
+        </p>
+      </form>
+    </div>
   );
 };
 

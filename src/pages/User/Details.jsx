@@ -1,75 +1,63 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { apiGetSingleUserAd } from "../../services/adverts";
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
 
 function Details() {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [ad, setAd] = useState({});
 
-  const fetchSingleAd = async () => {
-    setLoading(true);
-    try {
-      const res = await apiGetSingleUserAd(id);
-      console.log(res.data.data);
-      setAd(res.data.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchSingleAd = async () => {
+      setLoading(true);
+      try {
+        const res = await apiGetSingleUserAd(id);
+        setAd(res.data.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchSingleAd();
-  }, []);
+  }, [id]);
 
   return (
-    <div>
+    <div className="min-h-screen bg-rose-50 py-10 px-4 md:px-24 flex items-center justify-center">
       {loading ? (
-        <div className="min-h-[90vh] flex flex-col items-center">
-          <p className="text-2xl font-semibold">Loading....</p>
+        <div className="min-h-[60vh] flex items-center justify-center">
+          <p className="text-2xl font-semibold text-gray-700">Loading...</p>
         </div>
       ) : (
-        <section
-          id="ad-details"
-          class="min-h-[80vh] grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] px-24 py-8 bg-[rgb(243,243,243)]"
-        >
-          <div
-            id="image"
-            className="min-h-[40vh] max-h-[500px] bg-white p-6 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.233)] overflow-hidden transition-all duration-200 ease-in hover:p-[0.1rem] hover:shadow-[-7px_0_20px_white,inset_0_0_15px_rgba(0,0,0,0.233)]"
-          >
+        <section className="w-full max-w-6xl bg-white rounded-xl shadow-xl overflow-hidden grid md:grid-cols-2 gap-6 p-8">
+          {/* Image Section */}
+          <div className="flex items-center justify-center bg-rose-100 rounded-lg p-4">
             <img
               src={ad.imageURL}
-              alt="ad-image"
-              className="w-full h-full object-contain"
+              alt="ad"
+              className="w-full h-[400px] object-contain"
             />
           </div>
-          <div className="p-4 md:p-8 flex flex-col justify-evenly">
-            <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(196,69,118)]">
-              Product:{" "}
-              <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-                {ad.title}
-              </span>
+
+          {/* Info Section */}
+          <div className="flex flex-col justify-center text-left space-y-6">
+            <h1 className="text-3xl font-bold text-rose-700">{ad.title}</h1>
+
+            <p className="text-gray-700 text-base">
+              <span className="font-semibold text-gray-800">Category:</span>{" "}
+              {Array.isArray(ad.category)
+                ? ad.category.join(", ")
+                : ad.category}
             </p>
-            <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(196,69,118)]">
-              Category:{" "}
-              <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-                {ad.category}
-              </span>
+
+            <p className="text-gray-700 text-base">
+              <span className="font-semibold text-gray-800">Description:</span>{" "}
+              {ad.description}
             </p>
-            <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(196,69,118)]">
-              Description:{" "}
-              <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-                {ad.description}
-              </span>
-            </p>
-            <p className="flex flex-col text-[1.5rem] font-medium text-[rgb(196,69,118)]">
-              Price:{" "}
-              <span className="text-[1.1rem] font-medium text-[rgb(59,59,65)]">
-                {ad.price}
-              </span>
+
+            <p className="text-xl font-bold text-rose-600">
+              Price: ${parseFloat(ad.price).toFixed(2)}
             </p>
           </div>
         </section>

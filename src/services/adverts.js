@@ -15,8 +15,8 @@ export const apiSearchUserAd = async (params) =>
 export const apiFetchVendorAds = async () => apiClient.get("/vendor/ads");
 
 // Search ads for vendor
-export const apiSearchVendorAds = async () =>
-  apiClient.get(`/vendor/ads/search`);
+export const apiSearchVendorAds = async (params) =>
+  apiClient.get(`/vendor/ads/search`, { params });
 
 // Get single ad for vendor
 export const apiGetSingleVendorAd = async (adID) =>

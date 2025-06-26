@@ -1,22 +1,38 @@
-import { FaFacebook } from "react-icons/fa6";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-black py-10">
-
-      
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
-        <p>Everything you need made fast. Really fast.</p>
+    <footer className="bg-pink-50 text-gray-800 py-12 mt-16 border-t border-pink-200">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+        {/* Tagline */}
         <div>
-          
-          <h3 className="text-lg font-semibold mb-3 text-amber-300" > Location</h3>
+          <p className="font-light">
+            Everything you need, delivered fast and with care.
+          </p>
+        </div>
+
+        {/* Location Info */}
+        <div>
+          <h3 className="text-lg font-semibold text-pink-600 mb-3">Location</h3>
           <p>123 Book Street</p>
           <p>Accra, Ghana</p>
           <p>Email: info@bookstore.com</p>
-        </div>      
-         {/* <div>
+        </div>
+
+        {/* Partner Info */}
+        <div>
+          <h3 className="text-lg font-semibold text-pink-600 mb-3">
+            Make Money with Us
+          </h3>
+          <ul className="space-y-1">
+            <li>Sell your products</li>
+            <li>Become an affiliate</li>
+            <li>Shop with us</li>
+          </ul>
+        </div>
+
+        {/* <div>
           <h3 className="text-lg font-semibold mb-3 text-amber-300">About Us</h3>
           <ul className="space-y-2">
             <li><a href="#" className="hover:underline">Donations</a></li>
@@ -26,36 +42,31 @@ const Footer = () => {
           </ul>
         </div> */}
 
-       
+        {/* Socials */}
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-amber-300">Make Money with Us </h3>
-          <ul>
-            <li>Sell your products</li>
-            <li>Become an affilate</li>
-            <li>Shop with us</li>
-          </ul>
-        </div>
-
-
-
-        
-        <div>
-          <h3 className="text-lg font-semibold  text-amber-300"> Follow Us</h3>
-          <ul className="space-y-2">
-            <li><a href="#" ><FaFacebook /></a></li>
-            <li><a href="#" ><FaXTwitter /></a></li>
-            <li><a href="#" ><FaInstagram /></a></li>
-           
-          </ul>
+          <h3 className="text-lg font-semibold text-pink-600 mb-3">
+            Follow Us
+          </h3>
+          <div className="flex space-x-4 text-2xl text-pink-500">
+            <a href="#" className="hover:text-pink-700 transition">
+              <FaFacebook />
+            </a>
+            <a href="#" className="hover:text-pink-700 transition">
+              <FaXTwitter />
+            </a>
+            <a href="#" className="hover:text-pink-700 transition">
+              <FaInstagram />
+            </a>
+          </div>
         </div>
       </div>
 
-      
-      <div className="text-center text-xs text-gray-400 mt-8">
+      {/* Copyright */}
+      <div className="text-center text-xs text-gray-500 mt-10">
         © {new Date().getFullYear()} JE Adverts. All rights reserved.
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

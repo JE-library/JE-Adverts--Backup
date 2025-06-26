@@ -8,14 +8,15 @@ const CreateAd = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-
   const [message, setMessage] = useState("");
 
+  const imageWatch = watch("image");
+
   const onSubmit = async (data) => {
-    console.log(data);
     const payload = new FormData();
     payload.append("title", data.title);
     payload.append("description", data.description);
@@ -25,75 +26,77 @@ const CreateAd = () => {
 
     try {
       const res = await apiPostVendorAds(payload);
-      console.log(res.data);
-      toast.success("product added successfully");
+      toast.success("Product added successfully");
       navigate("/dashboard/adverts");
     } catch (error) {
-      console.log(error);
-    } finally {
+      console.error(error);
+      toast.error("Something went wrong");
     }
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center  gap-8">
+    <div className="flex flex-col md:flex-row items-start justify-center gap-10 p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-8 rounded-lg shadow-lg w-full max-w-sm"
+        className="p-8 rounded-2xl shadow-xl bg-white w-full max-w-lg space-y-6 border border-gray-200"
       >
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Post an Advertisement
+        <h2 className="text-3xl font-bold text-center text-pink-700">
+          Post a New Ad
         </h2>
 
-        {message && (
-          <p className="text-green-700 font-semibold mb-4">{message}</p>
-        )}
-
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Title</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Title</label>
           <input
             type="text"
             {...register("title", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="Enter product name"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="e.g. Fenty Beauty Lip Gloss"
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Description</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Description
+          </label>
           <textarea
             {...register("description", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="Describe your product"
-          ></textarea>
+            className="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-pink-400"
+            rows={4}
+            placeholder="Briefly describe your product"
+          />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Image URL</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Image</label>
           <input
             type="file"
             {...register("image", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="Enter image URL"
+            className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200"
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Price ($)</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Price (Ghc)
+          </label>
           <input
             type="number"
+            step="0.01" // allows decimals
             {...register("price", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="Product price"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
+            placeholder="e.g. 35"
           />
         </div>
 
-        <div className="mb-6">
-          <label className="block text-gray-700 mb-2">Category</label>
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Category
+          </label>
           <select
             {...register("category", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-pink-400"
           >
-            <option value="">Select one</option>
+            <option value="">Select a category</option>
             <option value="Beauty Tool">Beauty Tool</option>
             <option value="Nails">Nails</option>
             <option value="Hair Products">Hair Products</option>
@@ -105,22 +108,26 @@ const CreateAd = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="cursor-pointer w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-md font-semibold transition"
         >
           Add Advertisement
         </button>
       </form>
 
-      {/* <div className="w-full md:w-1/2">
-        <img
-          src={
-            formData.image ||
-            "https://cdn.pixabay.com/photo/2017/06/18/14/01/shopping-2415820_1280.jpg"
-          }
-          alt="Product Preview"
-          className="w-full h-auto rounded-lg shadow-lg"
-        />
-      </div> */}
+      {/* Image Preview */}
+      <div className="hidden md:block w-full max-w-sm p-4">
+        {imageWatch?.[0] ? (
+          <img
+            src={URL.createObjectURL(imageWatch[0])}
+            alt="Preview"
+            className="w-full h-auto rounded-lg shadow-lg object-cover"
+          />
+        ) : (
+          <div className="w-full h-[300px] bg-pink-50 border border-dashed border-pink-200 flex items-center justify-center rounded-md text-gray-400 text-center p-4">
+            Image preview will show here after selection
+          </div>
+        )}
+      </div>
     </div>
   );
 };

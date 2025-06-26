@@ -12,7 +12,7 @@ const DashboardLayout = () => {
 
     // if there is no token, take them to login
     if (!token) {
-      navigate("/log-in")
+      navigate("/log-in");
     }
   }, []);
 

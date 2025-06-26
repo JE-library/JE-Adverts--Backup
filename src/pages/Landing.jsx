@@ -14,184 +14,137 @@ import MacCosmetics from "../assets/brands/Mac Cosmetics.png";
 import GoodMolecules from "../assets/brands/Good Molecules.png";
 import Ordinary from "../assets/brands/The Ordinary.png";
 import Neutrogena from "../assets/brands/Neutrogena.png";
-// brands
+// video
+import clinique from "../assets/videos/clinique.mp4";
+
 const Landing = () => {
   return (
     <UserLayout>
       <section>
-        <div
-          id="hero"
-          className="bg-black/80 relative h-full flex flex-col justify-center items-center"
-        >
-          <h1 className="relative text-center text-[5rem] font-semibold text-blue-50">
-            THE JE STORE
-          </h1>
-          <br />
-          <h3 className="text-[35px] mb-[150px]">
-            Every Essential You Need, Right Here, All At Once
-          </h3>
-          <button>
+        {/* Hero Section */}
+        <div className="relative w-full h-screen overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          >
+            <source src={clinique} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-pink-950/30 z-10" />
+          <div className="relative z-20 flex flex-col justify-center items-center h-full text-white text-center px-4">
+            <h1 className="text-5xl md:text-7xl font-serif font-semibold tracking-tight">
+              THE JE STORE
+            </h1>
+            <p className="mt-6 text-xl md:text-2xl max-w-xl font-light">
+              Every Essential You Need, Right Here, All At Once
+            </p>
             <Link
               to="sign-up"
-              className="py-4 px-10 rounded-2xl animate-bounce bg-purple-600 text-white"
+              className="mt-10 px-8 py-3 rounded-full bg-pink-600 hover:bg-pink-700 text-white text-lg font-medium shadow-lg transition-all duration-500 ease-in-out"
             >
-              {" "}
               Get Started
             </Link>
-          </button>
+          </div>
         </div>
-        <div className="bg-gray-100 py-12">
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {/* Item 1 */}
-            <div>
-              <div className="mx-auto mb-4 w-[150px] h-[150px] bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,0,0,0.233)]">
-                ⚡
+
+        {/* Features Section */}
+        <div className="bg-pink-50 py-16 px-4">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+            {[
+              {
+                icon: "⚡",
+                title: "Get your order in minutes!",
+                desc: "We've placed stores across the city to ensure lightning-fast deliveries.",
+              },
+              {
+                icon: "🔁",
+                title: "What you see is what you get!",
+                desc: "Our system guarantees accurate, reliable deliveries every time.",
+              },
+              {
+                icon: "🛍️",
+                title: "Shop thousands of items!",
+                desc: "Skincare, haircare, wellness, and everything in between — all in one place.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white p-6 rounded-2xl shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-pink-100"
+              >
+                <div className="text-4xl w-20 h-20 mx-auto flex items-center justify-center  text-white rounded-full mb-4 shadow-md">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-base">{item.desc}</p>
               </div>
-              <h3 className="font-semibold text-2xl mb-2">
-                Get your order in minutes!
-              </h3>
-              <p className="text-base text-gray-700">
-                We've strategically placed our stores across the city to make
-                sure your deliveries are made fast, really fast.
-              </p>
-            </div>
-
-            {/* Item 2 */}
-            <div>
-              <div className="mx-auto mb-4 w-[150px] h-[150px] bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,0,0,0.233)]">
-                🔁
-              </div>
-              <h3 className="font-semibold text-2xl mb-2">
-                What you see is what you get!
-              </h3>
-              <p className="text-base text-gray-700">
-                Our unique automated system makes sure you receieve exactly what
-                you ask for.
-              </p>
-            </div>
-
-            {/* Item 3 */}
-            <div>
-              <div className="mx-auto mb-4 w-[150px] h-[150px] bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_15px_rgba(0,0,0,0.233)]">
-                🛍️
-              </div>
-              <h3 className="font-semibold text-2xl mb-2">
-                Shop from thousands of items!
-              </h3>
-              <p className="text-base text-gray-700">
-                From skincare to haircare essentials, and everything that makes
-                living worth-wile, we’ve got it all.
-              </p>
-            </div>
+            ))}
           </div>
-          <div>
-            <h1 className="text-center justify-center items-center text-3xl mt-[35px] mb-[35px]">
-              Our Categories
-            </h1>
-          </div>
+        </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-[25px] place-items-center">
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture1Img}
-                alt="Haircare"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Haircare</span>
-            </div>
-
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture2Img}
-                alt="Skincare"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Skincare</span>
-            </div>
-
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture3Img}
-                alt="Nailcare"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Nailcare</span>
-            </div>
-
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture4Img}
-                alt="Fragrances"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Fragrances</span>
-            </div>
-
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture6Img}
-                alt="Wellness"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Wellness</span>
-            </div>
-
-            <div class="flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105">
-              <img
-                src={picture7Img}
-                alt="Makeup"
-                class="w-[250px] h-[130px] object-contain mb-3 rounded-[25px] shadow-[0_0_15px_rgba(0,0,0,0.233)]"
-              />
-              <span class="text-xl font-medium text-gray-800">Makeup</span>
-            </div>
-          </div>
-          <div>
-            <h1 className="text-center justify-center items-center text-3xl mt-[35px] mb-[35px]">
-              Some of the Brands in Store
-            </h1>
-          </div>
-          <div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 justify-items-center">
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
+        {/* Categories Section */}
+        <div className="bg-white py-16 px-4">
+          <h2 className="text-center text-3xl font-semibold mb-10 font-serif text-pink-700">
+            Our Categories
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 place-items-center">
+            {[
+              picture1Img,
+              picture2Img,
+              picture3Img,
+              picture4Img,
+              picture6Img,
+              picture7Img,
+            ].map((img, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center">
                 <img
-                  src={Neutrogena}
-                  alt="Neutrogena"
-                  class="max-w-[70%] max-h-[70%]"
+                  src={img}
+                  alt="Category"
+                  className="w-[200px] h-[120px] object-cover mb-3 rounded-xl shadow-md transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl hover:brightness-110"
+                />
+                <span className="text-lg font-medium text-gray-800">
+                  {
+                    [
+                      "Haircare",
+                      "Skincare",
+                      "Nailcare",
+                      "Fragrances",
+                      "Wellness",
+                      "Makeup",
+                    ][idx]
+                  }
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Brands Section */}
+        <div className="bg-pink-50 py-16 px-4">
+          <h2 className="text-center text-3xl font-semibold mb-10 font-serif text-pink-700">
+            Some of the Brands in Store
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 justify-items-center">
+            {[
+              Neutrogena,
+              Ordinary,
+              GoodMolecules,
+              MacCosmetics,
+              Nivea,
+              elf,
+            ].map((brand, idx) => (
+              <div
+                key={idx}
+                className="w-24 h-24 flex items-center justify-center border border-pink-100 bg-white rounded-xl shadow transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl hover:bg-pink-100"
+              >
+                <img
+                  src={brand}
+                  alt="brand"
+                  className="max-w-[70%] max-h-[70%]"
                 />
               </div>
-
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img
-                  src={Ordinary}
-                  alt="Ordinary"
-                  class="max-w-[70%] max-h-[70%]"
-                />
-              </div>
-
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img
-                  src={GoodMolecules}
-                  alt="Good Molecules"
-                  class="max-w-[70%] max-h-[70%]"
-                />
-              </div>
-
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img
-                  src={MacCosmetics}
-                  alt="Mac Cosmetics"
-                  class="max-w-[70%] max-h-[70%]"
-                />
-              </div>
-
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img src={Nivea} alt="Nivea" class="max-w-[70%] max-h-[70%]" />
-              </div>
-
-              <div class="w-28 h-28 flex items-center justify-center border border-gray-200 shadow-sm hover:shadow-md transition">
-                <img src={elf} alt="e.l.f" class="max-w-[70%] max-h-[70%]" />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

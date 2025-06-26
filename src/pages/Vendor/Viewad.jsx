@@ -1,4 +1,3 @@
-// impor
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import {
@@ -8,7 +7,6 @@ import {
 import { toast } from "react-toastify";
 
 const ViewAd = () => {
-  
   const { id } = useParams();
   const navigate = useNavigate();
   const [ad, setAd] = useState({});
@@ -18,7 +16,6 @@ const ViewAd = () => {
     setLoading(true);
     try {
       const res = await apiGetSingleVendorAd(id);
-      console.log(res.data.data);
       setAd(res.data.data);
     } catch (error) {
       console.log(error);
@@ -31,13 +28,7 @@ const ViewAd = () => {
     fetchSingleAd();
   }, []);
 
-  if (loading) {
-    return <div className="p-10 text-center ">Ad is Loading...</div>;
-  }
-
-  const handleEdit = () => {
-    navigate(`/dashboard/edit-ad/${ad.adID}`);
-  };
+  const handleEdit = () => navigate(`/dashboard/edit-ad/${ad.adID}`);
 
   const handleDelete = async () => {
     try {
@@ -51,34 +42,59 @@ const ViewAd = () => {
       );
     }
   };
-  return (
-    <div className="min-h-screen bg-amber-100 p-10 flex justify-center">
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl">
-        <img
-          src={ad.imageURL}
-          alt={ad.title}
-          className="w-full h-64 object-cover rounded mb-4"
-        />
-        <h2 className="text-3xl font-bold text-amber-700 mb-2">{ad.title}</h2>
-        <p className="text-gray-700 mb-2">{ad.description}</p>
-        <p className="text-gray-800 font-medium mb-1">
-          Category: {ad.category}
-        </p>
-        <p className="text-lg font-semibold text-amber-700 mb-4">${ad.price}</p>
 
-        <div className="flex justify-between mt-6">
-          <button
-            onClick={handleEdit}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleDelete}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            Delete
-          </button>
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-pink-50">
+        <p className="text-xl font-semibold text-pink-700">Ad is Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-pink-50 py-12 px-4 flex justify-center">
+      <div className="bg-white shadow-xl rounded-2xl overflow-hidden grid md:grid-cols-2 w-full max-w-5xl">
+        <div className="h-[300px] md:h-auto overflow-hidden">
+          <img
+            src={ad.imageURL}
+            alt={ad.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="p-6 flex flex-col justify-between">
+          <div>
+            <h2 className="text-3xl font-bold text-pink-700 mb-2">
+              {ad.title}
+            </h2>
+            <p className="text-gray-700 mb-4">{ad.description}</p>
+
+            <div className="mb-3">
+              <span className="font-semibold text-gray-800">Categories:</span>
+              <span className="text-sm text-gray-600 ml-1">
+                {Array.isArray(ad.category)
+                  ? ad.category.join(", ")
+                  : ad.category}
+              </span>
+            </div>
+
+            <p className="text-xl font-bold text-pink-700 mb-4">${ad.price}</p>
+          </div>
+
+          <div className="flex gap-4 mt-6 w-full justify-between">
+            <button
+              onClick={handleEdit}
+              className="cursor-pointer min-w-16 w-48 bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg shadow transition-all"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              className="cursor-pointer min-w-16 w-48 bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-lg shadow transition-all"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -5,39 +5,33 @@ import { apiEditVendorAds, apiGetSingleVendorAd } from "../../services/adverts";
 import { useForm } from "react-hook-form";
 
 const EditAd = () => {
-  const navigate = useNavigate();
-
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [ad, setAd] = useState({});
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm({
-    values: {
-      title: ad.title,
-      description: ad.description,
-      category: ad.category,
-      price: ad.price,
-    },
-  });
+  } = useForm();
 
-  const fetchSingleAd = async () => {
-    setLoading(true);
-    try {
-      const res = await apiGetSingleVendorAd(id);
-      setAd(res.data.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
+    const fetchSingleAd = async () => {
+      setLoading(true);
+      try {
+        const res = await apiGetSingleVendorAd(id);
+        const adData = res.data.data;
+        reset(adData); // ✅ This sets the form values
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchSingleAd();
-  }, []);
+  }, [id, reset]);
 
   const handleEdit = async (data) => {
     try {
@@ -45,73 +39,93 @@ const EditAd = () => {
       toast.success(res.data.message);
       navigate(`/dashboard/adverts/${id}`);
     } catch (error) {
-      console.error(
-        "Error deleting ad:",
-        error.response?.data || error.message
-      );
+      console.error("Error editing ad:", error.response?.data || error.message);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow rounded">
-      <h2 className="text-2xl font-bold mb-4">Edit Advertisement</h2>
+    <div className="min-h-screen bg-pink-50 py-10 px-4 flex justify-center">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-xl p-8">
+        <h2 className="text-3xl font-bold text-pink-700 mb-6 text-center">
+          Edit Advertisement
+        </h2>
 
-      {loading && <p>Loading...</p>}
+        {loading && (
+          <p className="text-center text-pink-600 font-semibold mb-4">
+            Loading ad details...
+          </p>
+        )}
 
-      <form onSubmit={handleSubmit(handleEdit)}>
-        <div className="mb-4">
-          <label className="block mb-1">Title:</label>
-          <input
-            type="text"
-            {...register("title", { required: true })}
-            className="w-full border px-3 py-2 rounded"
-          />
-        </div>
+        <form onSubmit={handleSubmit(handleEdit)} className="space-y-5">
+          <div>
+            <label className="block text-gray-700 mb-1">Title</label>
+            <input
+              type="text"
+              {...register("title", { required: true })}
+              className="w-full px-4 py-2 border rounded-md"
+              placeholder="Product title"
+            />
+            {errors.title && (
+              <p className="text-red-500 text-sm">Title is required.</p>
+            )}
+          </div>
 
-        {/* <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Image URL</label>
-          <input
-            type="file"
-            {...register("image", { required: true })}
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="Enter image URL"
-          />
-        </div> */}
+          <div>
+            <label className="block text-gray-700 mb-1">Description</label>
+            <textarea
+              {...register("description", { required: true })}
+              className="w-full px-4 py-2 border rounded-md"
+              placeholder="Describe the product"
+              rows={4}
+            ></textarea>
+            {errors.description && (
+              <p className="text-red-500 text-sm">Description is required.</p>
+            )}
+          </div>
 
-        <div className="mb-4">
-          <label className="block mb-1">Description:</label>
-          <textarea
-            {...register("description", { required: true })}
-            className="w-full border px-3 py-2 rounded"
-          ></textarea>
-        </div>
+          <div>
+            <label className="block text-gray-700 mb-1">Category</label>
+            <select
+              {...register("category", { required: true })}
+              className="w-full px-4 py-2 border rounded-md"
+            >
+              <option value="">Select category</option>
+              <option value="Beauty Tool">Beauty Tool</option>
+              <option value="Nails">Nails</option>
+              <option value="Hair Products">Hair Products</option>
+              <option value="Makeup">Makeup</option>
+              <option value="Wellness">Wellness</option>
+              <option value="Fragrance">Fragrance</option>
+            </select>
+            {errors.category && (
+              <p className="text-red-500 text-sm">Category is required.</p>
+            )}
+          </div>
 
-        <div className="mb-4">
-          <label className="block mb-1">Category:</label>
-          <input
-            type="text"
-            {...register("category", { required: true })}
-            className="w-full border px-3 py-2 rounded"
-          />
-        </div>
+          <div>
+            <label className="block text-gray-700 mb-1">Price (GHC)</label>
+            <input
+              type="number"
+              step="0.01" // allows decimals
+              {...register("price", { required: true })}
+              className="w-full px-4 py-2 border rounded-md"
+              placeholder="Enter price"
+            />
+            {errors.price && (
+              <p className="text-red-500 text-sm">Price is required.</p>
+            )}
+          </div>
 
-        <div className="mb-4">
-          <label className="block mb-1">Price:</label>
-          <input
-            type="number"
-            {...register("price", { required: true })}
-            className="w-full border px-3 py-2 rounded"
-          />
-        </div>
-
-        <button
-          onClick={handleEdit}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Edit Ad
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition-all"
+          >
+            Save Changes
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
+
 export default EditAd;
