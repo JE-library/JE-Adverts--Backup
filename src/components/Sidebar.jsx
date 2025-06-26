@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from "react-router";
 import K from "../constants";
 import { Link } from "react-router";
 
-
 const Sidebar = () => {
   const navigate = useNavigate();
 
@@ -12,9 +11,9 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-white border-r border-pink-100 w-60 h-screen pt-8 pb-6 px-4 flex flex-col fixed left-0 top-0 z-20 shadow-md">
+    <aside className="bg-gray-900 border-r border-pink-100 w-60 h-screen pt-8 pb-6 px-4 flex flex-col fixed left-0 top-0 z-20 shadow-md">
       {/* Logo */}
-      <div className="text-center text-2xl font-extrabold text-pink-600 mb-10 tracking-tight">
+      <div className="text-center text-2xl font-extrabold text-600 text-white mb-10 tracking-tight">
         <Link to="/" className="text-xl font-bold min-w-28">
           JE- Adverts
         </Link>
@@ -30,7 +29,7 @@ const Sidebar = () => {
               `flex items-center gap-x-3 px-4 py-2 rounded-md transition-colors text-sm font-medium ${
                 isActive
                   ? "bg-pink-100 text-pink-700 font-semibold"
-                  : "text-gray-700 hover:bg-pink-50"
+                  : "text-700 text-white hover:bg-pink-400"
               }`
             }
             end
