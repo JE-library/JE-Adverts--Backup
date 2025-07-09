@@ -102,7 +102,7 @@ const CreateAd = () => {
             <option value="Haircare">Haircare</option>
             <option value="Fragrances">Fragrances</option>
             <option value="Nail Care">Nail Care</option>
-            <option value="Nail Care">Nail Care</option>
+            <option value="Beauty Tools">Beauty Tools</option>
             <option value="Wellness">Wellness</option>
           </select>
         </div>
