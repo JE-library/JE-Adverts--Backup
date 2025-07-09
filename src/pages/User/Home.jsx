@@ -215,7 +215,7 @@ const Home = () => {
                   </p>
 
                   <p className="text-base font-semibold text-blue-700">
-                    Price: Ghc{ad.price}
+                    Price: GHC{ad.price}
                   </p>
                 </div>
 

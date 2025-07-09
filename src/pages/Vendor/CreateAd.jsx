@@ -77,7 +77,7 @@ const CreateAd = () => {
 
         <div>
           <label className="block text-gray-700 font-medium mb-1">
-            Price (Ghc)
+            Price (GHC)
           </label>
           <input
             type="number"
@@ -97,12 +97,13 @@ const CreateAd = () => {
             className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-pink-400"
           >
             <option value="">Select a category</option>
-            <option value="Beauty Tool">Beauty Tool</option>
-            <option value="Nails">Nails</option>
-            <option value="Hair Products">Hair Products</option>
+            <option value="Skincare">Skincare</option>
             <option value="Makeup">Makeup</option>
+            <option value="Haircare">Haircare</option>
+            <option value="Fragrances">Fragrances</option>
+            <option value="Nail Care">Nail Care</option>
+            <option value="Nail Care">Nail Care</option>
             <option value="Wellness">Wellness</option>
-            <option value="Fragrance">Fragrance</option>
           </select>
         </div>
 

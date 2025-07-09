@@ -57,7 +57,7 @@ function Details() {
             </p>
 
             <p className="text-xl font-bold text-rose-600">
-              Price: ${parseFloat(ad.price).toFixed(2)}
+              Price: GHC{parseFloat(ad.price).toFixed(2)}
             </p>
           </div>
         </section>

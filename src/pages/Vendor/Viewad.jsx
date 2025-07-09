@@ -78,7 +78,7 @@ const ViewAd = () => {
               </span>
             </div>
 
-            <p className="text-xl font-bold text-pink-700 mb-4">${ad.price}</p>
+            <p className="text-xl font-bold text-pink-700 mb-4">GHC{ad.price}</p>
           </div>
 
           <div className="flex gap-4 mt-6 w-full justify-between">
