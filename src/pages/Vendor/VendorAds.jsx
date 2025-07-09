@@ -20,7 +20,7 @@ function VendorAds() {
     try {
       const res = await apiFetchVendorAds();
       setVendorAds(res.data.data);
-      setUsername(res.data.username)
+      setUsername(res.data.username);
     } catch (error) {
       console.error("Error fetching ads:", error);
     } finally {
@@ -106,7 +106,9 @@ function VendorAds() {
       ) : (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
           {vendorAds === null ? (
-            <p className="text-2xl font-semibold text-rose-600 mb-2">{message}</p>
+            <p className="text-2xl font-semibold text-rose-600 mb-2">
+              {message}
+            </p>
           ) : (
             vendorAds.map((vendorAd) => (
               <div
@@ -126,7 +128,7 @@ function VendorAds() {
                 </h3>
 
                 <p className="text-pink-600 font-medium mt-1 mb-2">
-                  {vendorAd.price} GHC
+                  GHC{vendorAd.price}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-3">
